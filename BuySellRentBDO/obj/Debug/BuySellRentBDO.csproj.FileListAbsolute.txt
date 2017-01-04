@@ -1,0 +1,5 @@
+C:\Users\yiğit konya\documents\visual studio 2015\Projects\BuySellRent\BuySellRentBDO\bin\Debug\BuySellRentBDO.dll
+C:\Users\yiğit konya\documents\visual studio 2015\Projects\BuySellRent\BuySellRentBDO\bin\Debug\BuySellRentBDO.pdb
+C:\Users\yiğit konya\documents\visual studio 2015\Projects\BuySellRent\BuySellRentBDO\obj\Debug\BuySellRentBDO.csprojResolveAssemblyReference.cache
+C:\Users\yiğit konya\documents\visual studio 2015\Projects\BuySellRent\BuySellRentBDO\obj\Debug\BuySellRentBDO.dll
+C:\Users\yiğit konya\documents\visual studio 2015\Projects\BuySellRent\BuySellRentBDO\obj\Debug\BuySellRentBDO.pdb
