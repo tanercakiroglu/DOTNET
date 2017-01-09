@@ -5,27 +5,21 @@ using System;
 
 namespace BuySellRentDAL
 {
-    public class CountryDAO
+    public class CountryDAO : BaseDAO
     {
 
         public List<CountryBDO> getAllCountries()
         {
-            string connString = "Data Source=188.121.44.212;Initial Catalog=assetsDB;User ID=assets-user;Password=Sa123456";
-            SqlCommand sqlCommand;
-            string sql = null;
-            SqlDataReader reader;
+          
+          
             var list = new List<CountryBDO>();
-            SqlConnection sqlConnection1 = new SqlConnection(connString);
-
+            CountryBDO country = null;
             try
             {
-                sqlConnection1.Open();
-                sql = "SELECT  * FROM dbo.Country";
-                sqlCommand = new SqlCommand(sql, sqlConnection1);
-                reader = sqlCommand.ExecuteReader();
+                var reader = ExecuteQuery(CountryQueries.SelectCountryQuery);
                 while (reader.Read())
                 {
-                    var country = new CountryBDO();
+                    country = new CountryBDO();
                     country.ID = reader.GetInt32(0);
                     country.name = reader.GetString(2);
                     country.code = reader.GetString(1);
@@ -40,14 +34,13 @@ namespace BuySellRentDAL
             }
             catch (Exception ex)
             {
-
+                
                 throw ex;
             }
+          
 
 
-            reader.Close();
-            sqlCommand.Dispose();
-            sqlConnection1.Close();
+           
 
             return list;
         }
