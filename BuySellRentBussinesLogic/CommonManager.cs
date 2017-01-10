@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace BuySellRentBussinesLogic
 {
-    public class CountryLogic
+    public class CommonManager
     {
 
         public List<CountryBDO> GetAllCountries()
         {
-            CountryDAO countryDAO = new CountryDAO();
+            CommonDAO countryDAO = new CommonDAO();
             return countryDAO.getAllCountries() ;
             
         }

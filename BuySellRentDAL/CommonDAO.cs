@@ -5,7 +5,7 @@ using System;
 
 namespace BuySellRentDAL
 {
-    public class CountryDAO : BaseDAO
+    public class CommonDAO : BaseDAO
     {
 
         public List<CountryBDO> getAllCountries()

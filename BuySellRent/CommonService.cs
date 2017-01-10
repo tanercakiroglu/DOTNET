@@ -10,7 +10,7 @@ namespace BuySellRent
         public List<Country> getAllCountries()
         {
          
-            CountryLogic cl = new CountryLogic();
+            CommonManager cl = new CommonManager();
             var list = new List<Country>();
             translateFromBDOtoDTO(list, cl.GetAllCountries());
 
