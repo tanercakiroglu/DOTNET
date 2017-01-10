@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BaseDAO.cs" />
     <Compile Include="CommonDAO.cs" />
+    <Compile Include="Interface\ICommonDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries.cs" />
   </ItemGroup>
