@@ -6,7 +6,6 @@ namespace BuySellRentDAL
 {
     public abstract class BaseDAO
     {
-
         private const string connString = "Data Source=188.121.44.212;Initial Catalog=assetsDB;User ID=assets-user;Password=Sa123456";
 
         private SqlConnection getConnection()

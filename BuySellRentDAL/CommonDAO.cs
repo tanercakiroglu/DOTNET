@@ -11,13 +11,14 @@ namespace BuySellRentDAL
 
         public List<CountryBDO> getAllCountries()
         {
-            var list = new List<CountryBDO>();
+            List<CountryBDO> list = null;
             CountryBDO country = null;
             try
             {
                 var dataTable = ExecuteQuery(CountryQueries.SelectCountryQuery);
                 if (dataTable != null && dataTable.Rows!=null && dataTable.Rows.Count>0)
                 {
+                    list = new List<CountryBDO>();
                     foreach (DataRow row in dataTable.Rows)
                     {
                         country = new CountryBDO();
