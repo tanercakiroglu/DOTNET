@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDAO.cs" />
+    <Compile Include="BaseDataAccessObject\BaseDAO.cs" />
     <Compile Include="CommonDAO.cs" />
     <Compile Include="Interface\ICommonDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
