@@ -43,7 +43,7 @@ namespace BuySellRentDAL
         {
             var conn = getConnection();
             SqlCommand sqlCommand = null;
-            DataTable dt = new DataTable();
+            DataTable dt = null;
             if (conn != null)
             {
                 try
@@ -51,7 +51,10 @@ namespace BuySellRentDAL
                     conn.Open();
                     sqlCommand = new SqlCommand(sqlQuery, conn);
                     if (sqlCommand != null)
+                    {
+                        dt = new DataTable();
                         dt.Load(sqlCommand.ExecuteReader());
+                    }
                 }
                 catch (Exception ex)
                 {
