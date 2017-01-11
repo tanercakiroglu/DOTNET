@@ -1,23 +1,29 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace BuySellRentDAL
 {
-    public abstract  class BaseDAO
+    public abstract class BaseDAO
     {
-        protected  SqlConnection connection = null;
+
         private const string connString = "Data Source=188.121.44.212;Initial Catalog=assetsDB;User ID=assets-user;Password=Sa123456";
 
         private SqlConnection getConnection()
         {
-            if (connection == null)
-                return connection = new SqlConnection(connString);
-
+            SqlConnection connection = null;
+            try
+            {
+                connection = new SqlConnection(connString);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return connection;
-
         }
 
-        protected void closeConneciton()
+        private void closeConneciton(SqlConnection connection)
         {
             if (connection != null && connection.State == System.Data.ConnectionState.Open)
             {
@@ -33,24 +39,73 @@ namespace BuySellRentDAL
             }
         }
 
-        protected SqlDataReader ExecuteQuery(string sqlQuery)
+        protected DataTable ExecuteQuery(string sqlQuery)
         {
             var conn = getConnection();
-            conn.Open();
             SqlCommand sqlCommand = null;
-            sqlCommand = new SqlCommand(sqlQuery, conn);
+            DataTable dt = new DataTable();
+            if (conn != null)
+            {
+                try
+                {
+                    conn.Open();
+                    sqlCommand = new SqlCommand(sqlQuery, conn);
+                    if (sqlCommand != null)
+                        dt.Load(sqlCommand.ExecuteReader());
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    try
+                    {
+                        closeConneciton(conn);
+                        sqlCommand.Dispose();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
 
-            return sqlCommand.ExecuteReader();
+            }
+
+            return dt;
         }
 
         protected void ExecuteNonQuery(string sqlQuery, params SqlParameter[] parameters)
         {
             var conn = getConnection();
-            conn.Open();
             SqlCommand sqlCommand = null;
-            sqlCommand = new SqlCommand(sqlQuery, conn);
-            sqlCommand.Parameters.AddRange(parameters);
-            sqlCommand.ExecuteNonQuery();
+            if (conn != null)
+            {
+                try
+                {
+                    conn.Open();
+                    sqlCommand = new SqlCommand(sqlQuery, conn);
+                    sqlCommand.Parameters.AddRange(parameters);
+                    sqlCommand.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    try
+                    {
+                        closeConneciton(conn);
+                        sqlCommand.Dispose();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+
         }
     }
 }
